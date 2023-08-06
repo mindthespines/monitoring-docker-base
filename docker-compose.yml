@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+
+  blackbox_exporter:
+    image: prom/blackbox-exporter
+    container_name: blackbox_exporter
+    ports:
+      - 9115:9115
+    volumes:
+      - ./blackbox:/etc/blackbox
+    command:
+      - --config.file=/etc/blackbox/blackbox.yml
+

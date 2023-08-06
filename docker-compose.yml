@@ -21,3 +21,14 @@ services:
     command:
       - --config.file=/etc/blackbox/blackbox.yml
 
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    # if you are running as root then set user to 0
+    # else find the right id with the id -u command
+    user: '0'
+    ports:
+      - 3000:3000
+    volumes:
+      - ~/grafana_data:/var/lib/grafana
+
